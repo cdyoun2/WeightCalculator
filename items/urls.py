@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from items import views
+from .views import WorkoutEntries
 
 urlpatterns = [
     path('', views.ItemList.as_view(), name='item_list'),
+    path('workout/', WorkoutEntries.as_view(), name='workout_entries'),
 ]
