@@ -21,6 +21,8 @@ class WorkoutEntries (generic.ListView):
     template_name = 'items/workout.html'
     model = WorkoutEntry
     fields = ['deadlift', 'squat', 'bench', 'clean', 'snatch', 'ohp']
+    def displayWorkout(request):
+        return render(request, 'workout.html')
 
     def post(self, request, *args, **kwargs):
         WorkoutEntries.objects.create(text=request.POST["text"])
