@@ -27,5 +27,9 @@ class WorkoutEntries (generic.ListView):
         return render(request, 'WeightCalculator.html')
 
     def post(self, request, *args, **kwargs):
-        WorkoutEntries.objects.create(text=request.POST["text"])
+        WorkoutEntries.objects.create()
+        WorkoutEntries.object.get(x=request.POST['form'])
         return HttpResponse("Success!")
+
+
+"""selected_choice = question.choice_set.get(pk=request.POST['choice'])"""
