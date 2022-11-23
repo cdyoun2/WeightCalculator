@@ -7,64 +7,7 @@
     {% csrf_token %}
 
     <!-- Using the formset -->
-    {{ form.as_p }}
+    {{ form }}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" href="{% static 'WeightCalculator.css' %}">
-    </head>
-
-    <body>
-        <div class="heading">
-            <h1 id="head">Weight Lifting Calculator</h1>
-        </div>
-        <form id="PersonalInfo">
-            <div id="PersonalInformation">
-                <label>Name</label> <br><br>
-                <input type="name" name="name" placeholder="Enter your name" class="box"><br><br>
-                <label>Age</label> <br><br>
-                <input type="age" name="age" placeholder="Enter your age" class="box"><br><br>
-                <label for="genders" id="Gender">Gender:</label><br><br>
-                <select name="genders">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select> <br><br>
-                <label>Weight</label> <br><br>
-                <input type="weight" name="weight" placeholder="Enter your weight" class="box"><br><br>
-                <label>Height</label> <br><br>
-                <input type="height" name="height" placeholder="Enter your height" class="box"><br><br>
-            </div>
-
-            <div id="Gender">
-                <label for="genders" id="Gender">Gender:</label><br><br>
-                <select name="genders">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select> <br><br>
-            </div>
-        </form>
-
-
-        <form id="Weight">
-            <div id="WeightLifting">
-                <label>Deadlift</label> <br><br>
-                <input type="deadlift" name="deadlift" placeholder="Enter your Deadlift" class="box"><br><br>
-                <label>Back Squat</label> <br><br>
-                <input type="backsquat" name="backsquat" placeholder="Enter your Backsquat" class="box"><br><br>
-                <label>Bench Press</label> <br><br>
-                <input type="benchpress" name="benchpress" placeholder="Enter your Bench Press" class="box"><br><br>
-                <label>Clean</label> <br><br>
-                <input type="clean" name="clean" placeholder="Enter your Clean" class="box"><br><br>
-                <label>Snatch</label> <br><br>
-                <input type="snatch" name="snatch" placeholder="Enter your Snatch" class="box"><br><br>
-                <label>Overhead Press</label> <br><br>
-                <input type="overheadpress" name="overheadpress" placeholder="Enter your Overhead Press"
-                    class="box"><br><br>
-                <input type="submit" value="Submit">
-            </div>
-        </form>
-    </body>
-
-</html>
+    <button type="submit">Submit</button>
 </form>

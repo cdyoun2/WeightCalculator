@@ -20,5 +20,5 @@ from .views import WorkoutEntries
 
 urlpatterns = [
     #path('', views.ItemList.as_view(), name='item_list'),
-    path('', WorkoutEntries.as_view(), name='workout_entries'),
+    path('', views.WorkoutEntries, name='workout_entries'),
 ]
