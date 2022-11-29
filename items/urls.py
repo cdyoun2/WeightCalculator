@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from items import views
 from .views import WorkoutEntries
+from .views import *
 
 urlpatterns = [
     #path('', views.ItemList.as_view(), name='item_list'),
-    path('', views.WorkoutEntries, name='workout_entries'),
+    path('workout/', views.WorkoutEntries,),
+    path('view/', WorkoutList.as_view()),
 ]

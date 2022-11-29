@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import WorkoutEntry
 from .forms import CreateWorkout
 #from items.templates import WeightCalculator
+from .processWorkout import ProcessWorkout
 
 # Create your views here.
 
@@ -34,7 +35,19 @@ def WorkoutEntries(request):
     form = CreateWorkout()
     return render(request, 'items/WeightCalculator.html', {"form": form})
 
-    # def post(self, request, *args, **kwargs):
-    #     WorkoutEntries.objects.create()
-    #     WorkoutEntries.object.get(x=request.POST['form'])
-    #     return HttpResponse("Success!")
+# class ViewWorkout
+# def ViewWorkout(request):
+#     context_object_name = 'workout_list'
+#     workout1 = ProcessWorkout()
+#     ProcessWorkout.process()
+#     return render(request, 'items/viewWorkout.html')
+
+
+class WorkoutList(generic.ListView):
+    template_name = 'items/viewWorkout.html'
+    context_object_name = 'workout_list'
+    model = WorkoutEntry
+    ProcessWorkout.process()
+
+    def get_queryset(self):
+        return WorkoutEntry.objects.filter()
