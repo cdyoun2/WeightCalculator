@@ -47,7 +47,7 @@ class WorkoutList(generic.ListView):
     template_name = 'items/viewWorkout.html'
     context_object_name = 'workout_list'
     model = WorkoutEntry
-    ProcessWorkout.process()
 
     def get_queryset(self):
+        ProcessWorkout.process()
         return WorkoutEntry.objects.filter()
