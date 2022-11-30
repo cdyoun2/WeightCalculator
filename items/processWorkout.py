@@ -32,6 +32,7 @@ class ProcessWorkout():
                     print(letter)
                 count = count + 1
                 deadlift.append([
-                            int(string_of_weight), int(string_of_reps)])
+                    int(string_of_weight), int(string_of_reps)])
 
         print(deadlift)
+        print(i.date)

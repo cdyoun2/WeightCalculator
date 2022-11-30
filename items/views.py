@@ -5,6 +5,7 @@ from .models import WorkoutEntry
 from .forms import CreateWorkout
 #from items.templates import WeightCalculator
 from .processWorkout import ProcessWorkout
+import datetime
 
 # Create your views here.
 
@@ -31,6 +32,7 @@ def WorkoutEntries(request):
             example1.clean = clean
             example1.snatch = snatch
             example1.ohp = ohp
+            example1.date = datetime.date.today()
             example1.save()
     form = CreateWorkout()
     return render(request, 'items/WeightCalculator.html', {"form": form})
