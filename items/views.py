@@ -3,9 +3,11 @@ from django.views import generic
 from django.http import HttpResponse
 from .models import WorkoutEntry
 from .forms import CreateWorkout
-#from items.templates import WeightCalculator
+# from items.templates import WeightCalculator
 from .processWorkout import ProcessWorkout
 import datetime
+import matplotlib.pyplot as plt
+
 
 # Create your views here.
 
@@ -53,3 +55,25 @@ class WorkoutList(generic.ListView):
     def get_queryset(self):
         ProcessWorkout.process()
         return WorkoutEntry.objects.filter()
+
+
+# def showChart(request):
+#     #chart = get_chart()
+#     return render(request, 'items/showChart.html', context={'chart': chart})
+
+
+# def plot_view(request):
+#     # Generate a Matplotlib plot
+
+#     plt.plot([1, 2, 3, 4])
+#     plt.ylabel('some numbers')
+
+#     # Save the plot to a file
+#     plt.savefig('items/plot.png')
+
+#     # Render the plot on a webpage
+#     return render(request, 'items/plot.html', {'plot_url': '//plot.png'})
+
+def plot_view(request):
+    image_data = open("items/templates/items/plot.png", "rb").read()
+    return HttpResponse(image_data, content_type="image/png")
