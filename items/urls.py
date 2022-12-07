@@ -23,4 +23,5 @@ urlpatterns = [
     #path('', views.ItemList.as_view(), name='item_list'),
     path('workout/', views.WorkoutEntries,),
     path('view/', WorkoutList.as_view()),
+    path('plot/', views.plot_view),
 ]
