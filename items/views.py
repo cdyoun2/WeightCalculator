@@ -1,23 +1,23 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
-from .models import WorkoutEntry
-from .forms import CreateWorkout
+from .models import *
+from .forms import *
 # from items.templates import WeightCalculator
 from .processWorkout import ProcessWorkout
 import datetime
 import matplotlib.pyplot as plt
+from django.contrib.auth import authenticate, login
+# import user
+from django.contrib.auth.models import User
+# import redirect
+from django.shortcuts import redirect
 
 
 # Create your views here.
 
 
 def WorkoutEntries(request):
-    # template_name = 'items/WeightCalculator.html'
-    # model = WorkoutEntry
-    # fields = ['deadlift', 'squat', 'bench', 'clean', 'snatch', 'ohp']
-
-    # def displayWorkout(request):
     if request.method == 'POST':
         form = CreateWorkout(request.POST)
         if form.is_valid():
@@ -35,16 +35,10 @@ def WorkoutEntries(request):
             example1.snatch = snatch
             example1.ohp = ohp
             example1.date = datetime.date.today()
+            example1.user = request.user
             example1.save()
     form = CreateWorkout()
     return render(request, 'items/WeightCalculator.html', {"form": form})
-
-# class ViewWorkout
-# def ViewWorkout(request):
-#     context_object_name = 'workout_list'
-#     workout1 = ProcessWorkout()
-#     ProcessWorkout.process()
-#     return render(request, 'items/viewWorkout.html')
 
 
 class WorkoutList(generic.ListView):
@@ -53,27 +47,38 @@ class WorkoutList(generic.ListView):
     model = WorkoutEntry
 
     def get_queryset(self):
-        ProcessWorkout.process()
-        return WorkoutEntry.objects.filter()
+        ProcessWorkout.process(self.request.user)
+        print(self.request.user)
+        return WorkoutEntry.objects.filter(user=self.request.user)
 
-
-# def showChart(request):
-#     #chart = get_chart()
-#     return render(request, 'items/showChart.html', context={'chart': chart})
-
-
-# def plot_view(request):
-#     # Generate a Matplotlib plot
-
-#     plt.plot([1, 2, 3, 4])
-#     plt.ylabel('some numbers')
-
-#     # Save the plot to a file
-#     plt.savefig('items/plot.png')
-
-#     # Render the plot on a webpage
-#     return render(request, 'items/plot.html', {'plot_url': '//plot.png'})
 
 def plot_view(request):
-    image_data = open("items/templates/items/plot.png", "rb").read()
+    image_data = open("items/templates/items/" +
+                      request.user.__str__() + "plot.png", "rb").read()
     return HttpResponse(image_data, content_type="image/png")
+
+
+def home_view(request):
+    login_form = LoginForm(request.POST)
+    register_user_form = RegisterForm(request.POST)
+    if 'username_to_login' in request.POST:
+        if login_form.is_valid():
+            username_to_login = login_form.cleaned_data['username_to_login']
+            password = login_form.cleaned_data['password']
+            User2 = User.objects.get(username=username_to_login)
+            print('we are here')
+            if (type(User2) is not str):
+                if (User2.check_password(password)):
+                    print('login successful')
+                    login(request, User2)
+                    return redirect('workout')
+    if 'username_to_register' in request.POST:
+        if register_user_form.is_valid():
+            username_to_register = register_user_form.cleaned_data['username_to_register']
+            password = register_user_form.cleaned_data['password']
+            User2 = User.objects.create_user(
+                username_to_register, '', password)
+
+    context = {'login_form': login_form,
+               'register_user_form': register_user_form}
+    return render(request, 'items/home.html', context=context)

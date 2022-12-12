@@ -20,8 +20,8 @@ from .views import WorkoutEntries
 from .views import *
 
 urlpatterns = [
-    #path('', views.ItemList.as_view(), name='item_list'),
-    path('workout/', views.WorkoutEntries,),
-    path('view/', WorkoutList.as_view()),
-    path('plot/', views.plot_view),
+    path('', views.home_view, name='home'),
+    path('workout/', views.WorkoutEntries, name='workout'),
+    path('view/', WorkoutList.as_view(), name='view'),
+    path('plot/', views.plot_view, name='plot'),
 ]

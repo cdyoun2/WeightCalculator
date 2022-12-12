@@ -1,0 +1,65 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'WeightCalculator.css' %}">
+    <title>Weight Calculator</title>
+    {% if user.is_authenticated %}
+    {% block content1 %}
+    <h1>Logged in as: {{request.user.username}} </h1>
+
+    <a style='text-align: center; margin-top:10px' href="/accounts/logout">Logout</a>
+    {% endblock %}
+    {% else %}
+    {% block content2 %}
+</head>
+
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        <h1 class="text-center mt-3 text-white">Weight Calculator Register New User</h1>
+        <div class="row text-white">
+            {% csrf_token %}
+            <!-- Using the formset -->
+            <div
+                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+                <div class="div-to-align">
+
+                    {{register_user_form|crispy}}
+
+                    <button type="submit">Submit</button>
+                </div>
+
+            </div>
+        </div>
+        <!--        {{form|crispy}}-->
+    </form>
+
+    <form method="POST" enctype="multipart/form-data">
+        <h1 class="text-center mt-3 text-white">Weight Calculator Login </h1>
+        <div class="row text-white">
+            {% csrf_token %}
+            <!-- Using the formset -->
+            <div
+                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+                <div class="div-to-align">
+                    {{login_form|crispy}}
+
+
+                    <button type="submit">Submit</button>
+                </div>
+
+            </div>
+        </div>
+        <!--        {{form|crispy}}-->
+    </form>
+</body>
+
+</html>
+{% endblock %}
+{% endif %}

@@ -10,5 +10,5 @@ class WorkoutEntry(models.Model):
     clean = models.CharField(max_length=300, default=" ")
     snatch = models.CharField(max_length=300, default=" ")
     ohp = models.CharField(max_length=300, default=" ")
-    #user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)

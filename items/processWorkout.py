@@ -7,7 +7,7 @@ import datetime
 
 class ProcessWorkout():
 
-    def process():
+    def process(user):
         deadlift = []
         bench = []
         squat = []
@@ -15,14 +15,14 @@ class ProcessWorkout():
         snatch = []
         ohp = []
         dates = []
-        deadlift = process_exercise('deadlift')
-        bench = process_exercise('bench')
-        squat = process_exercise('squat')
-        clean = process_exercise('clean')
-        snatch = process_exercise('snatch')
-        ohp = process_exercise('ohp')
+        deadlift = process_exercise('deadlift', user=user)
+        bench = process_exercise('bench', user=user)
+        squat = process_exercise('squat', user=user)
+        clean = process_exercise('clean', user=user)
+        snatch = process_exercise('snatch', user=user)
+        ohp = process_exercise('ohp', user=user)
 
-        for i in WorkoutEntry.objects.all():
+        for i in WorkoutEntry.objects.filter(user=user):
             dates.append(i.date)
 
         # create the deadliftTonnage list
@@ -32,7 +32,7 @@ class ProcessWorkout():
         cleanTonnage = []
         ohpTonnage = []
         snatchTonnage = []
-        
+
         print('printing deadlift')
         print(deadlift)
         deadlift_tonnage_part = 0
@@ -41,7 +41,7 @@ class ProcessWorkout():
         clean_tonnage_part = 0
         ohp_tonnage_part = 0
         snatch_tonnage_part = 0
-        
+
         for i in deadlift:
             for j in i:
                 deadlift_tonnage_part += j[0]*j[1]
@@ -94,8 +94,7 @@ class ProcessWorkout():
                  marker="o", linestyle="dashed")
         # add the snatch line to the chart
         plt.plot(dates, snatchTonnage, color="black",
-                    marker="o", linestyle="dashed")
-
+                 marker="o", linestyle="dashed")
 
         # set the x-axis to the dates
         plt.gcf().autofmt_xdate()
@@ -107,13 +106,18 @@ class ProcessWorkout():
         plt.title("Total Tonnage Lifted Over Time")
         max_deadlift_tonnage = max(deadliftTonnage)
         plt.ylim(0, max_deadlift_tonnage+1000)
-        # show the plot
+        # create a legend
+        # create a legend
+        plt.legend(["deadlift", "bench", "squat", "clean", "ohp", "snatch"])
 
         # show the plot
-        plt.savefig('items/templates/items/plot.png')
+
+        # show the plot
+        plt.savefig('items/templates/items/' +
+                    user.__str__() + 'plot.png')
 
 
-def process_exercise(exercise):
+def process_exercise(exercise, user):
     count = 0
     count_inner = 0
     exercise_set = []
@@ -122,7 +126,7 @@ def process_exercise(exercise):
     string_of_reps = ''
     is_weight_flag = True
     exercise_array = []
-    for i in WorkoutEntry.objects.all():
+    for i in WorkoutEntry.objects.filter(user=user):
         print(i.__getattribute__(exercise))
         if (count == 0):
             for letter in i.__getattribute__(exercise):
