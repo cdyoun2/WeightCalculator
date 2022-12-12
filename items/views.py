@@ -36,6 +36,7 @@ def WorkoutEntries(request):
             example1.ohp = ohp
             example1.date = datetime.date.today()
             example1.user = request.user
+            print('savingf entry')
             example1.save()
     form = CreateWorkout()
     return render(request, 'items/WeightCalculator.html', {"form": form})

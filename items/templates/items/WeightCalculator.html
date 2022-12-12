@@ -12,49 +12,26 @@
     <title>Weight Calculator</title>
 </head>
 
-<body>
+<div id="Weight"
+    class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
     <form method="POST" enctype="multipart/form-data">
-        <h1 class="text-center mt-3 text-white">Weight Calculator</h1>
-        <div class="row text-white">
+        <div class="div-to-align"><br>
             {% csrf_token %}
-            <!-- Using the formset -->
-            <div
-                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
-                <div class="div-to-align">
-                    {{form.deadlift|as_crispy_field}}
-                    {{form.bench|as_crispy_field}}
-                    {{form.squat|as_crispy_field}}
-                    {{form.clean|as_crispy_field}}
-                    {{form.ohp|as_crispy_field}}
-                    {{form.snatch|as_crispy_field}}
-                    <button type="submit">Submit</button>
-                </div>
-
-            </div>
-        </div>
-        <!--        {{form|crispy}}-->
-    </form>
-</body>
-            <div id = "Weight"
-                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
-                <form>
-                    <div class="div-to-align"><br>
-                        {{form.deadlift|as_crispy_field}}<br><br>
-                        {{form.bench|as_crispy_field}}<br><br>
-                        {{form.squat|as_crispy_field}}<br><br>
-                        {{form.clean|as_crispy_field}}<br><br>
-                        {{form.ohp|as_crispy_field}}<br><br>
-                        {{form.snatch|as_crispy_field}}<br><br>
-                        <button type="submit">   Submit  </button>
-                        <button class="plot">
-                            <a href="http://127.0.0.1:8000/plot/">View My Chart</a>
-                        </button>
-                    </div>
-                </form>
-
-            </div>
+            {{form.deadlift|as_crispy_field}}<br><br>
+            {{form.bench|as_crispy_field}}<br><br>
+            {{form.squat|as_crispy_field}}<br><br>
+            {{form.clean|as_crispy_field}}<br><br>
+            {{form.ohp|as_crispy_field}}<br><br>
+            {{form.snatch|as_crispy_field}}<br><br>
+            <button type="submit"> Submit </button>
+            <button class="plot">
+                <a href="http://127.0.0.1:8000/plot/">View My Chart</a>
+            </button>
         </div>
     </form>
+
+</div>
+</div>
 </body>
 
 </html>
