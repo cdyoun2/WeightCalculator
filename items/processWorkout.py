@@ -8,6 +8,7 @@ import datetime
 class ProcessWorkout():
 
     def process(user):
+    def process():
         deadlift = []
         bench = []
         squat = []
@@ -32,7 +33,6 @@ class ProcessWorkout():
         cleanTonnage = []
         ohpTonnage = []
         snatchTonnage = []
-
         print('printing deadlift')
         print(deadlift)
         deadlift_tonnage_part = 0
@@ -41,7 +41,6 @@ class ProcessWorkout():
         clean_tonnage_part = 0
         ohp_tonnage_part = 0
         snatch_tonnage_part = 0
-
         for i in deadlift:
             for j in i:
                 deadlift_tonnage_part += j[0]*j[1]
