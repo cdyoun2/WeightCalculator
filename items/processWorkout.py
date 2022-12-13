@@ -32,7 +32,7 @@ class ProcessWorkout():
         cleanTonnage = []
         ohpTonnage = []
         snatchTonnage = []
-        
+
         print('printing deadlift')
         print(deadlift)
         deadlift_tonnage_part = 0
@@ -41,7 +41,7 @@ class ProcessWorkout():
         clean_tonnage_part = 0
         ohp_tonnage_part = 0
         snatch_tonnage_part = 0
-        
+
         for i in deadlift:
             for j in i:
                 deadlift_tonnage_part += j[0]*j[1]
@@ -94,8 +94,7 @@ class ProcessWorkout():
                  marker="o", linestyle="dashed")
         # add the snatch line to the chart
         plt.plot(dates, snatchTonnage, color="black",
-                    marker="o", linestyle="dashed")
-
+                 marker="o", linestyle="dashed")
 
         # set the x-axis to the dates
         plt.gcf().autofmt_xdate()
@@ -158,11 +157,6 @@ def process_exercise(exercise):
         string_of_reps = ''
         exercise_set = []
     return exercise_array
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas
-from .models import WorkoutEntry
-import datetime
 
 
 class ProcessWorkout():
@@ -273,8 +267,7 @@ class ProcessWorkout():
         # show the plot
 
         # show the plot
-        plt.savefig('items/templates/items/' +
-                    user.__str__() + 'plot.png')
+        plt.savefig('items/templates/items/plot.png')
 
 
 def process_exercise(exercise, user):

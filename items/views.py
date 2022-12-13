@@ -54,8 +54,7 @@ class WorkoutList(generic.ListView):
 
 
 def plot_view(request):
-    image_data = open("items/templates/items/" +
-                      request.user.__str__() + "plot.png", "rb").read()
+    image_data = open("items/templates/items/plot.png", "rb").read()
     return HttpResponse(image_data, content_type="image/png")
 
 
