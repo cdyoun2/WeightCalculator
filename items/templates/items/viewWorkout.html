@@ -34,6 +34,12 @@
                 <li> {{ workout.squat }} </li>
                 {% endfor %}
             </ol>
+            <h3 class="text-center mt-3 text-white"> Clean: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.clean }} </li>
+                {% endfor %}
+            </ol>
             <h3 class="text-center mt-3 text-white"> Snatch: </h3>
             <ol>
                 {% for workout in workout_list %}
@@ -54,7 +60,7 @@
                 <a href="http://127.0.0.1:8000/workout/">Back to Form</a>
             </button>
         </form>
-    </>
+    </div>
 </body>
 
 </html>
