@@ -1,9 +1,60 @@
-<h1> Our Workouts </h1 />
-<p>
+{% load static %}
 
-<ol>
-    [{% for workout in workout_list %}
-    <li> {{ workout.deadlift }} </li>
-    {% endfor %}]
-</ol>
-</p>
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'WeightCalculator.css' %}">
+    <title>Weight Calculator</title>
+</head>
+<body>
+    <h1 class="text-center mt-3 text-white"> Our Workouts </h1>
+    <div id = "Weight"
+                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+        <form>
+            <h3 class="text-center mt-3 text-white"> Deadlift: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.deadlift }} </li>
+                {% endfor %}
+            </ol>
+            <h3 class="text-center mt-3 text-white"> Bench Press: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.bench }} </li>
+                {% endfor %}
+            </ol>
+            <h3 class="text-center mt-3 text-white"> Squat: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.squat }} </li>
+                {% endfor %}
+            </ol>
+            <h3 class="text-center mt-3 text-white"> Snatch: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.snatch }} </li>
+                {% endfor %}
+            </ol>
+            <h3 class="text-center mt-3 text-white"> Overhead Press: </h3>
+            <ol>
+                {% for workout in workout_list %}
+                <li> {{ workout.ohp }} </li>
+                {% endfor %}
+            </ol>
+            <br><br>
+            <button class="plot">
+                <a href="http://127.0.0.1:8000/plot/">View My Plot</a>
+            </button>
+            <button class="plot">
+                <a href="http://127.0.0.1:8000/workout/">Back to Form</a>
+            </button>
+        </form>
+    </>
+</body>
+
+</html>

@@ -12,26 +12,36 @@
     <title>Weight Calculator</title>
 </head>
 
-<div id="Weight"
-    class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+<body>
     <form method="POST" enctype="multipart/form-data">
-        <div class="div-to-align"><br>
+        <h1 class="text-center mt-3 text-white">Weight Calculator</h1>
+        <div class="row text-white">
             {% csrf_token %}
-            {{form.deadlift|as_crispy_field}}<br><br>
-            {{form.bench|as_crispy_field}}<br><br>
-            {{form.squat|as_crispy_field}}<br><br>
-            {{form.clean|as_crispy_field}}<br><br>
-            {{form.ohp|as_crispy_field}}<br><br>
-            {{form.snatch|as_crispy_field}}<br><br>
-            <button type="submit"> Submit </button>
-            <button class="plot">
-                <a href="http://127.0.0.1:8000/plot/">View My Chart</a>
-            </button>
+            <!-- Using the formset -->
+            <div id = "Weight"
+                class="col-md-12 offset-1 col-lg-3 offset-lg-2 div-wrapper d-flex justify-content-center align-items-center">
+                <form>
+                    <div class="div-to-align"><br>
+                        {{form.deadlift|as_crispy_field}}<br><br>
+                        {{form.bench|as_crispy_field}}<br><br>
+                        {{form.squat|as_crispy_field}}<br><br>
+                        {{form.clean|as_crispy_field}}<br><br>
+                        {{form.ohp|as_crispy_field}}<br><br>
+                        {{form.snatch|as_crispy_field}}<br><br>
+                        <button type="submit">Submit</button>
+                        <button class="plot">
+                            <a href="http://127.0.0.1:8000/plot/">View My Chart</a>
+                        </button>
+                        <button class="plot">
+                            <a href="http://127.0.0.1:8000/view/">Validate the Form</a>
+                        </button>
+                        <button class="plot">
+                            <a href="http://127.0.0.1:8000">Login Page</a>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </form>
-
-</div>
-</div>
 </body>
-
 </html>
